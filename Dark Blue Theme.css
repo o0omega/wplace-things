@@ -8,6 +8,7 @@ in the new menu extension provides for even better effect!
 
 :root {
     color-scheme: dark;
+    --text-fix: #ebfaff;
     --color-base-100: #000315cc;
     --color-base-200: #010021;
     --color-base-300: #020033;
@@ -18,18 +19,36 @@ in the new menu extension provides for even better effect!
     --border-fix: 1px solid #8fc5ff70;
     --fx-noise: none;
     --color-primary: #000646d4;
+    --color-error: #4f000ced;
+    --color-error-content: #ff9090;
+    --color-error-content-border: var(--color-error-content);
+}
+[data-sonner-toaster] {
+    --warning-bg: #312d00e8 !important;
+    --warning-text: #e8d500 !important;
+    --warning-border: #ac9e00 !important;
+}
+[data-type=info] {
+  --info-bg: var(--btn-color);
+  --info-border: var(--color-base-content); 
+  --info-text: var(--color-base-content);
+}
+[data-type=error] {
+  --error-bg: var(--color-error);
+  --error-border: var(--color-error-content);
+  --error-text: var(--color-error-content);
 }
 
 body,
-.tab:not(:checked,label:has(:checked),:hover,.tab-active,[aria-selected=true]),
-.table :where(th,td),
-.btn-soft:not(.btn-active,:hover,:active:focus,:focus-visible,:disabled,[disabled],.btn-disabled),
+.tab:not(:checked, label:has(:checked), :hover, .tab-active, [aria-selected=true]),
+.table :where(th, td),
+.btn-soft:not(.btn-active, :hover, :active:focus, :focus-visible, :disabled, [disabled], .btn-disabled),
 .text-primary,
 .fill-primary {
-    color: #ebfaff !important;
+    color: var(--text-fix) !important;
 }
 
-.btn:is(:disabled,[disabled],.btn-disabled):not(.btn-link,.btn-ghost),
+.btn:is(:disabled, [disabled], .btn-disabled):not(.btn-link, .btn-ghost),
 .sm\:mt-\[1px\] {
     color: #c0faff
 }
@@ -43,7 +62,10 @@ body,
     filter: invert(1) contrast(10);
 }
 
-
 .absolute.bottom-0.left-1\/2.-translate-x-1\/2 > button.btn:is(:disabled, [disabled], .btn-disabled):not(.btn-link, .btn-ghost) .flex.items-center.gap-1.sm\:mt-\[1px\] > span > canvas {
-      filter: invert(1) contrast(10) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white);
+    filter: invert(1) contrast(10) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white);
+}
+
+.btn-error {
+    border-color: var(--color-error-content-border)
 }
