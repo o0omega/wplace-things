@@ -5,7 +5,6 @@ These styles only change the ui colors, the map canvas remains the same.
 Download the script from https://github.com/autergame/WplacePlugins for tampermoney and change the theme to Dark Blue
 in the new menu extension provides for even better effect!
 */
-
 :root {
     color-scheme: dark;
     --text-fix: #ebfaff;
@@ -29,14 +28,14 @@ in the new menu extension provides for even better effect!
     --warning-border: #ac9e00 !important;
 }
 [data-type=info] {
-  --info-bg: var(--btn-color);
-  --info-border: var(--color-base-content); 
-  --info-text: var(--color-base-content);
+    --info-bg: var(--btn-color);
+    --info-border: var(--color-base-content);
+    --info-text: var(--color-base-content);
 }
 [data-type=error] {
-  --error-bg: var(--color-error);
-  --error-border: var(--color-error-content);
-  --error-text: var(--color-error-content);
+    --error-bg: var(--color-error);
+    --error-border: var(--color-error-content);
+    --error-text: var(--color-error-content);
 }
 
 body,
@@ -63,9 +62,18 @@ body,
 }
 
 .absolute.bottom-0.left-1\/2.-translate-x-1\/2 > button.btn:is(:disabled, [disabled], .btn-disabled):not(.btn-link, .btn-ghost) .flex.items-center.gap-1.sm\:mt-\[1px\] > span > canvas {
-    filter: invert(1) contrast(10) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white);
+    filter:
+        invert(1)
+        contrast(10)
+        drop-shadow(-1px 0 0 #fff)
+        drop-shadow(0 1px 0 #fff);  
 }
 
 .btn-error {
     border-color: var(--color-error-content-border)
+}
+
+.ring-2 {
+    box-shadow: inset 0 0 10px var(--color-base-content);
+	outline: 1px solid rgb(255, 255, 255);
 }
