@@ -1,0 +1,41 @@
+:root {
+    color-scheme: dark;
+    --color-base-100: #000315cc;
+    --color-base-200: #010021;
+    --color-base-300: #020033;
+    --color-base-content: #82d4f2;
+    --btn-color: #000226d4;
+    --btn-fg: #0002268a;
+    --btn-bg: #0002268a;
+    --border-fix: 1px solid #8fc5ff70;
+    --fx-noise: none;
+    --color-primary: #000646d4;
+}
+
+body,
+.tab:not(:checked,label:has(:checked),:hover,.tab-active,[aria-selected=true]),
+.table :where(th,td),
+.btn-soft:not(.btn-active,:hover,:active:focus,:focus-visible,:disabled,[disabled],.btn-disabled),
+.text-primary,
+.fill-primary {
+    color: #ebfaff !important;
+}
+
+.btn:is(:disabled,[disabled],.btn-disabled):not(.btn-link,.btn-ghost),
+.sm\:mt-\[1px\] {
+    color: #c0faff
+}
+
+.btn,
+.dropdown .dropdown-content {
+    border: var(--border-fix);
+}q
+
+.text-xl > canvas {
+    filter: invert(1) contrast(10);
+}
+
+
+.absolute.bottom-0.left-1\/2.-translate-x-1\/2 > button.btn:is(:disabled, [disabled], .btn-disabled):not(.btn-link, .btn-ghost) .flex.items-center.gap-1.sm\:mt-\[1px\] > span > canvas {
+      filter: invert(1) contrast(10) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white) drop-shadow(0 0 0px white);
+}
