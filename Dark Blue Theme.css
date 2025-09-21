@@ -1,3 +1,8 @@
+/*
+Those styles only change the ui colors, the map canvas remains the same
+Download the script from https://github.com/autergame/WplacePlugins and change the theme to Dark Blue for even better effect!
+*/
+
 :root {
     color-scheme: dark;
     --color-base-100: #000315cc;
@@ -29,7 +34,7 @@ body,
 .btn,
 .dropdown .dropdown-content {
     border: var(--border-fix);
-}q
+}
 
 .text-xl > canvas {
     filter: invert(1) contrast(10);
