@@ -1,6 +1,6 @@
 import os
 import imageio.v2 as imageio
-import numpy as np  # Still needed minimally for MP4 append_data
+import numpy as np
 from datetime import datetime
 from PIL import Image
 import sys
@@ -237,4 +237,5 @@ Runtime FPS: {runtime_fps:.2f}
     """)
     
 else:
+
     print("Missing Frames")
