@@ -1,19 +1,30 @@
+# CONFIG
+
+# Coordinates for 2 tiles: (min_x, min_y), (max_x, max_y)
+# You can get tiles coordinates with wplace extensions like Blue Marble 
+# (or manually check backend name for the tile)
+# Only rectangle shapes are supported, e.g. 1x1, 1x2, 2x5, 10x10
+bounds_input = [
+    (824, 792),  # top-left
+    (827, 795)   # bottom-right
+]
+
+# Output folder
+output_folder = "TEST"
+
+# Interval per capture (seconds)
+sleep_seconds = 900
+
+
+
+
+
+
 import requests
 from PIL import Image
 import io
 import time
 import os
-
-# CONFIG
-# Coordinates for 2 tiles: (min_x, min_y), (max_x, max_y)
-bounds_input = [
-    (824, 792),  # top-left
-    (827, 795)   # bottom-right
-]
-# Output folder
-output_folder = "OSU"
-# Interval (seconds)
-sleep_seconds = 900
 
 # Expand rectangle into full tile list
 def expand_bounds(c1, c2):
