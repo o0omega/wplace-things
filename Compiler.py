@@ -1,3 +1,33 @@
+# CONFIG
+
+# Folder with tracked images
+input_folder = 'TEST'
+
+# Folder for outputting final product
+output_file = 'TEST/test_compiled'
+
+# FPS
+fps = 10
+
+# Desired output format for output (gif file is larger)
+output_format = 'mp4' # Options: 'mp4', 'gif'
+
+# Background for the tiles (to avoid transparency, if desired)
+transparency_replacement = (23, 33, 48, 255) # RGBA
+
+# Specify a rectangle area to compile
+crop = True # Set to False if not needed
+x1, y1 = 0, 0       # top left pixel
+x2, y2 = 1166, 1450 # bottom right pixel
+
+# Relative day or days range to compile [[1]] or [[3,10]] or [[1, 4],[10, 51]]
+days_enabled = False 
+days = [[15]]
+
+
+
+
+
 import os
 import imageio.v2 as imageio
 import numpy as np
@@ -8,90 +38,14 @@ import time
 
 start_time = datetime.now()
 
-# SETTINGS
-input_folder = 'OSU'
-output_video = 'timelapses/OSU'
-fps = 30
-output_format = 'gif' # Options: 'mp4', 'gif'
 
-gif_background_color = (56, 64, 82, 255) # RGBA
-mp4_background_color = (0, 0, 0, 255)
-
-crop = False # Specify a rectangle area to compile
-x1, y1 = 7, 7 # top left pixel
-x2, y2 = 1166, 876 # bottom right pixel
-
-days_enabled = True # Day or days range to compile [[1]] or [[3,10]] or [[1, 4],[10, 51]]
-days = [[6]]
 
 hex_colors = [
-"000000",
-"3c3c3c",
-"787878",
-"aaaaaa",
-"d2d2d2",
-"ffffff",
-"600018",
-"a50e1e",
-"ed1c24",
-"fa8072",
-"e45c1a",
-"ff7f27",
-"f6aa09",
-"f9dd3b",
-"fffabc",
-"9c8431",
-"c5ad31",
-"e8d45f",
-"4a6b3a",
-"5a944a",
-"84c573",
-"0eb968",
-"13e67b",
-"87ff5e",
-"0c816e",
-"10aea6",
-"13e1be",
-"0f799f",
-"60f7f2",
-"bbfaf2",
-"28509e",
-"4093e4",
-"7dc7ff",
-"4d31b8",
-"6b50f6",
-"99b1fb",
-"4a4284",
-"7a71c4",
-"b5aef1",
-"780c99",
-"aa38b9",
-"e09ff9",
-"cb007a",
-"ec1f80",
-"f38da9",
-"9b5249",
-"d18078",
-"fab6a4",
-"684634",
-"95682a",
-"dba463",
-"7b6352",
-"9c846b",
-"d6b594",
-"d18051",
-"f8b277",
-"ffc5a5",
-"6d643f",
-"948c6b",
-"cdc59e",
-"333941",
-"6d758d",
-"b3b9d1"
+"000000", "3c3c3c", "787878", "aaaaaa", "d2d2d2", "ffffff", "600018", "a50e1e", "ed1c24", "fa8072", "e45c1a", "ff7f27", "f6aa09", "f9dd3b", "fffabc", "9c8431", "c5ad31", "e8d45f", "4a6b3a", "5a944a", "84c573", "0eb968", "13e67b", "87ff5e", "0c816e", "10aea6", "13e1be", "0f799f", "60f7f2", "bbfaf2", "28509e", "4093e4", "7dc7ff", "4d31b8", "6b50f6", "99b1fb", "4a4284", "7a71c4", "b5aef1", "780c99", "aa38b9", "e09ff9", "cb007a", "ec1f80", "f38da9", "9b5249", "d18078", "fab6a4", "684634", "95682a", "dba463", "7b6352", "9c846b", "d6b594", "d18051", "f8b277", "ffc5a5", "6d643f", "948c6b", "cdc59e", "333941", "6d758d", "b3b9d1"
 ]
 
 # Add background color to palette if not already present
-bg_hex = f"{gif_background_color[0]:02x}{gif_background_color[1]:02x}{gif_background_color[2]:02x}"
+bg_hex = f"{transparency_replacement[0]:02x}{transparency_replacement[1]:02x}{transparency_replacement[2]:02x}"
 if bg_hex not in hex_colors:
     hex_colors.append(bg_hex)
 
@@ -136,7 +90,7 @@ for day_entry in selected_days_list:
             if day in day_images:
                 all_selected_days.add(day)
                 total_frames += len(day_images[day])
-print(f"Selected {len(all_selected_days)} day(s) with total {total_frames} frames")
+print(f"Selected {len(all_selected_days)} day(s) with total of {total_frames} frames")
 
 # Select images
 selected_images = []
@@ -163,7 +117,7 @@ for day_entry in selected_days_list:
 
 # Saving
 if selected_images:
-    os.makedirs(os.path.dirname(output_video), exist_ok=True)
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     total_frames = len(selected_images)
     total_seconds = total_frames / fps
     minutes = int(total_seconds // 60)
@@ -171,24 +125,24 @@ if selected_images:
     milliseconds = int((total_seconds - int(total_seconds)) * 1000)
     duration_str = f"{minutes}m {seconds}s {milliseconds}ms"
 
-    print(f"Processing and saving {output_format.upper()}")
+    print(f"Processing and saving {output_format.upper()} at {fps} fps...")
 
     if output_format == 'gif':
-        output_video = output_video + '.gif'
+        output_file = output_file + '.gif'
         duration_ms = int(1000 / fps)
         images_p = []  
         for img_path in selected_images:
             img = Image.open(img_path).convert("RGBA")
             if crop:
                 img = img.crop((x1, y1, x2, y2))
-            background = Image.new("RGBA", img.size, gif_background_color)
+            background = Image.new("RGBA", img.size, transparency_replacement)
             composite_img = Image.alpha_composite(background, img)
             rgb_img = composite_img.convert("RGB")
             p_img = rgb_img.quantize(palette=pal_img, dither=Image.Dither.NONE)
             images_p.append(p_img)
 
         images_p[0].save(
-            output_video,
+            output_file,
             save_all=True,
             append_images=images_p[1:],
             duration=duration_ms,
@@ -197,9 +151,9 @@ if selected_images:
         )
 
     elif output_format == 'mp4':
-        output_video = output_video + '.mp4'
+        output_file = output_file + '.mp4'
         writer = imageio.get_writer(
-            output_video,
+            output_file,
             format='FFMPEG',
             mode='I',
             fps=fps,
@@ -211,7 +165,7 @@ if selected_images:
             img = Image.open(img_path).convert("RGBA")
             if crop:
                 img = img.crop((x1, y1, x2, y2))
-            background = Image.new("RGBA", img.size, mp4_background_color)
+            background = Image.new("RGBA", img.size, transparency_replacement)
             composite_img = Image.alpha_composite(background, img)
             rgb_img = composite_img.convert("RGB")
             rgb_arr = np.array(rgb_img)
@@ -229,13 +183,17 @@ if selected_images:
     proc_ms = int(processing_time.microseconds / 1000)
     runtime_fps = total_frames / processing_time.total_seconds() if processing_time.total_seconds() > 0 else 0
 
+    size_by = os.path.getsize(output_file)
+    size_mb = size_by // (1024 * 1024)
+    size_kb = (size_by % (1024 * 1024)) // 1024
+
     print(f"""
-Saved: {output_video}
+Saved: {output_file}
 Duration: {duration_str}
 Runtime: {proc_minutes}m {proc_seconds}s {proc_ms}ms
 Runtime FPS: {runtime_fps:.2f}
+File Size: {size_mb}MB {size_kb}KB
     """)
     
 else:
-
     print("Missing Frames")
