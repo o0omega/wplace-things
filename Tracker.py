@@ -1,4 +1,4 @@
-# CONFIG
+# CONFIGURATION SETTINGS
 
 # Coordinates for 2 tiles: (min_x, min_y), (max_x, max_y)
 # You can get tiles coordinates with wplace extensions like Blue Marble 
@@ -9,16 +9,13 @@ bounds_input = [
     (827, 795)   # bottom-right
 ]
 
-# Output folder
+# Output Folder Path
 output_folder = "TEST"
 
 # Interval per capture (seconds)
 sleep_seconds = 900
 
-
-
-
-
+# ----------------------------------------------------------
 
 import requests
 from PIL import Image
