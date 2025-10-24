@@ -1,33 +1,33 @@
 # CONFIGURATION SETTINGS
 
 # Folder containing your source images (frames)
-# Example: 'OSU' means images are stored in ./OSU/
+# Example: 'OSU' means images are stored in ./OSU/ (folder named OSU in the same directory as the script)
 input_folder = 'OSU'
 
 # Path and filename (without extension) for the generated timelapse
-# Example: 'Timelapses/OSU' > output will be 'Timelapses/OSU.mp4' or '.webm'
+# Example: 'Timelapses/OSU' > uses/creates a Timelapses folder and stores the timelapse named OSU
 output_file = 'Timelapses/OSU'
-
-# Frames per second (FPS) for the final timelapse
-# Higher = smoother playback, but larger file size and shorter duration
-fps = 30
 
 # Output format of the final timelapse
 # Options:
 # 'mp4'  - smaller file size, no transparency
 # 'webm' - video with any kind of transparency
 # 'gif'  - larger file size, supports only complete transparency
-output_format = 'gif'
+output_format = 'mp4'
 
-# Color to fill transparent areas 
+# Frames per second (FPS) for the final timelapse
+# Higher = faster playback
+fps = 60
+
+# Color (in RGBA) to fill transparent areas 
 # Example: (23, 33, 48, 255) > a dark bluish background 
 # Set to None if you want to keep transparency (Not supported in mp4)
-transparency_replacement = (23, 33, 48, 255) # RGBA tuple or None
+transparency_replacement = (23, 33, 48, 255)
 
 # Crop the images before compiling
 # True  > apply crop to each frame
 # False > use full images
-crop = True
+crop = False
 # Define the crop rectangle area (pixels)
 # Coordinates: (x1, y1) = top-left corner, (x2, y2) = bottom-right corner
 # Example below keeps the region on input images from (0, 0) to (1166, 1450)
@@ -35,13 +35,14 @@ x1, y1 = 0, 0
 x2, y2 = 1166, 1450
 
 # Process only specific "days" (frame ranges)
-# Set to True to enable filtering, or False to process everything
-days_enabled = True
+# True  > enable filtering
+# False > process everything
+days_enabled = False
 # Specify days to include, using one or more ranges:
 # [[1]]        > only day 1
 # [[3, 10]]    > days 3 through 10
 # [[1, 4], [10, 51]] > multiple ranges
-days = [[1],[10]]
+days = [[15,21]]
 
 # ----------------------------------------------------------
 
