@@ -18,4 +18,6 @@ Small wplace utilities collection, which includes:
 * Configure the settings in `Tracker.py` at the top of the file
 * Run `build.bat` to make `Tracker.exe` and start it to begin tracking
 * After getting the frames, configure `Compiler.py` at the top of the file and run it
-* Find the result at the location that you selected ☃️
+* Find the result at the location that you selected.
+
+☃️
