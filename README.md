@@ -9,7 +9,7 @@ Small wplace utilities collection, which includes:
 * You are good to enjoy the dark blue theme!
   * If you would like to adjust the colors of the canvas, I would recommend checking out [Map Dark](https://github.com/autergame/WplacePlugins/tree/main).
 
-#$ Tile Tracker
+## Tile Tracker
 * Download latest [Python](https://www.python.org) and [Visual Studio Code](https://code.visualstudio.com/)
 * Download `Tracker.py`, `Compilter.py`, `requirements.txt`, `requirements.bat` and `build.bat` files found above
 * Put them in a new, separate folder and open that folder in Visual Studio Code
