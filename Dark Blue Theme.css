@@ -11,9 +11,11 @@
     --border-fix: 1px solid #8fc5ff70;
     --fx-noise: none;
     --color-primary: #000646d4;
-    --color-error: #4f000ced;
+    --color-error: #ff4763ed;
     --color-error-content: #ff9090;
     --color-error-content-border: var(--color-error-content);
+    --color-neutral: var(--color-base-300);
+    --color-neutral-content: #fff;
 }
 [data-sonner-toaster] {
     --warning-bg: #312d00e8 !important;
@@ -69,4 +71,8 @@ body,
 .ring-2 {
     box-shadow: inset 0 0 10px var(--color-base-content);
 	outline: 1px solid rgb(255, 255, 255);
+}
+
+.btn-primary {
+    --btn-fg: #82d4f2;
 }
